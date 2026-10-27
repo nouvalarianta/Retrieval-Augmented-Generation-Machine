@@ -1,19 +1,9 @@
-# Company documents, indices, models, logs, golden set, and debug outputs
-data/
-models/
-index/*
-!index/.gitkeep
-logs/
-golden/
-debug/*
-!debug/.gitkeep
-
 # Sensitive environment variables
 .env
 .env.*
 !.env.example
 
-# Document and binary artifacts (strictly blocked from git)
+# Company documents (PDF & Excel) strictly blocked from git
 docs/*
 !docs/.gitkeep
 *.pdf

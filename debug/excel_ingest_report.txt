@@ -1,0 +1,61 @@
+======================================================================
+  LAPORAN STATISTIK INGEST: Laporan Harian Perbaikan Maintenance
+  File: Laporan Harian 1.xlsx
+======================================================================
+
+  Total record   : 2345
+  Penyebab terisi: 1341
+  Penyebab kosong: 1004 (42.8%)
+  Low-info record: 14
+  Tanggal ditandai: 0
+
+  --- Per Mesin (top 20) ---
+      687  Filling Machine
+      315  Robot Palletizer
+      300  Conveyor
+      250  Case Packer
+      234  Case Erector
+      176  Automatic Weigher
+       92  Check Weigher
+       84  Pallet Dispenser
+       39  Metal Detector
+       32  Case Sealer
+       31  Control System
+       20  Flowbalancer
+       17  Moisture Control
+       15  SCADA
+       14  Microdozer
+       13  Roll Mill
+       11  Instrumen alat ukur
+        4  AC panel
+        3  Flowmatic
+        1  RFID System
+
+  --- Per Area ---
+     1560  CP
+      473  Packing 25 Kg
+      109  Worksop Automation
+       30  Mill C
+       21  Mill D
+       20  Mill B
+       18  Jetty
+       16  Mill A
+       15  Mill E
+       13  BPP
+       11  Mill F
+        9  Mill H
+        7  Bulk
+        6  Pellet Silo Baru
+        5  Mill G
+
+  --- Per Status (normalized) ---
+     2054  selesai
+      181  belum_selesai
+      105  selesai_program
+        5  
+
+  --- Per Jenis Kerusakan (normalized) ---
+     1405  mechanical
+      935  electrical
+
+======================================================================

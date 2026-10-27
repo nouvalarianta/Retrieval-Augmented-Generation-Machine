@@ -1,0 +1,55 @@
+{
+  "pipeline_version": "0.2.0",
+  "last_updated": "2026-10-22T13:46:44.377459+00:00",
+  "sources": {
+    "meag_bag": {
+      "filename": "MEAG_BAG.pdf",
+      "source_type": "pdf",
+      "sha256": "cacef94b08316943a15bf6c5beec9fcbf7ed59c169c764108186d5f4b515debc",
+      "profile_sha256": "0e5c349b393afd5bb47954e18d80108ec3b8aea700362a8be1e86f67f4f632eb",
+      "chunks_count": 247,
+      "profile": "meag_manual"
+    },
+    "meag_check": {
+      "filename": "MEAG_CHECK.pdf",
+      "source_type": "pdf",
+      "sha256": "f95d5548a62784230a66a16497abc9dc0a219c77ad283d649da76e3180b3d291",
+      "profile_sha256": "0e5c349b393afd5bb47954e18d80108ec3b8aea700362a8be1e86f67f4f632eb",
+      "chunks_count": 97,
+      "profile": "meag_manual"
+    },
+    "meag_dump": {
+      "filename": "MEAG_DUMP_82_pages.pdf",
+      "source_type": "pdf",
+      "sha256": "36e31e33b2878319b9e60c02d6b7d50641bebd83ebc99a233c83c80fd623d275",
+      "profile_sha256": "0e5c349b393afd5bb47954e18d80108ec3b8aea700362a8be1e86f67f4f632eb",
+      "chunks_count": 282,
+      "profile": "meag_manual"
+    },
+    "meag_diff": {
+      "filename": "MEAG-DIFF.pdf",
+      "source_type": "pdf",
+      "sha256": "bc14afb9e437798fd24bf2e869da42c7e9d2795f0f2140a9e55d0f0182034fd0",
+      "profile_sha256": "0e5c349b393afd5bb47954e18d80108ec3b8aea700362a8be1e86f67f4f632eb",
+      "chunks_count": 259,
+      "profile": "meag_manual"
+    },
+    "meag_fbal": {
+      "filename": "MEAG-FBAL.pdf",
+      "source_type": "pdf",
+      "sha256": "d5e1c8a91cc017b346ef9cd7ec9de353ccdd58df3b117f8b047de7c2076fd153",
+      "profile_sha256": "0e5c349b393afd5bb47954e18d80108ec3b8aea700362a8be1e86f67f4f632eb",
+      "chunks_count": 99,
+      "profile": "meag_manual"
+    },
+    "laporan_harian_1": {
+      "filename": "Laporan Harian 1.xlsx",
+      "source_type": "excel",
+      "sha256": "80fb87d883faddf497f038a8e249f77a26145b99c4ab9c94a541e77200e03044",
+      "profile_sha256": "052c6fea4b0c2f9fbd94b8784956f1e821503eb9e19e0b5c45f48f62541e8711",
+      "chunks_count": 2345,
+      "profile": "laporan_harian"
+    }
+  },
+  "total_chunks": 3329
+}
