@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "machine-assistant"
+version = "0.1.0"
+description = "Local retrieval-based industrial machine troubleshooting assistant"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Ananda Nouval Aryanta"}
+]
+dependencies = [
+    "PyMuPDF>=1.24.0",
+    "openpyxl>=3.1.0",
+    "PyYAML>=6.0.1",
+    "pydantic>=2.7.0",
+]
+
+[project.scripts]
+ma = "machine_assistant.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

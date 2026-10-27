@@ -1,0 +1,28 @@
+# Konfigurasi Utama Machine Assistant
+pipeline_version: "0.2.0"
+
+runtime:
+  device: "cpu"
+  offline_mode: true
+
+ingest:
+  pdf_backend: "pymupdf"
+  header_footer_threshold: 0.50
+  prose_chunk_tokens: 300
+  prose_chunk_overlap: 50
+
+retrieval:
+  top_k_per_route: 5
+  final_top_k: 5
+
+llm:
+  enabled: true
+  provider: "local"       # "local" (menggunakan llama-server) atau "none" (raw fallback)
+  model: "qwen2.5-1.5b-instruct"
+  timeout_s: 180
+  local:
+    base_url: "http://127.0.0.1:8080"
+    model: "qwen2.5-1.5b-instruct"
+    temperature: 0.2
+    max_tokens: 450
+    timeout_s: 180

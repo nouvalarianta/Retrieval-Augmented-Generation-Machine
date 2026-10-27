@@ -1,0 +1,147 @@
+profile_name: "laporan_harian"
+description: "Profile for daily maintenance report Excel files (Laporan Harian)"
+
+# Sheet to read; other sheets are ignored
+sheet_name: "Notification"
+
+# Row numbers (1-indexed)
+header_row: 4
+data_start_row: 5
+
+# Column mapping: logical name → Excel column letter
+# Only these columns are ingested. Name, NIK, and pelaksana are excluded for privacy.
+column_mapping:
+  year: "B"
+  month: "C"
+  day: "D"
+  date: "E"
+  no: "F"
+  shift: "G"
+  area: "I"
+  machine: "J"
+  funcloc: "K"
+  tools: "O"
+  tools_n: "N"
+  spare_part_name: "Q"
+  spare_part_qty: "R"
+  permasalahan: "S"
+  penyebab: "T"
+  kegiatan_perbaikan: "U"
+  jenis_kerusakan: "V"
+  status: "W"
+  rework: "X"
+
+# Columns explicitly excluded for privacy (never read, never log, never index)
+privacy_excluded_columns:
+  - "Y"   # Name
+  - "Z"   # NIK
+  - "AA"  # Start (contains pelaksana timing)
+  - "AB"  # End
+  - "AC"  # Duration Minute
+  - "AD"  # Duration Penyelesaian
+  - "AE"  # Serah Terima User
+  - "AF"  # Kebersihan
+  - "AG"  # Konfirmasi
+
+# How to detect a new record vs continuation row:
+# A row is a new record if Machine (J) OR Permasalahan (S) is non-empty
+new_record_columns:
+  - "machine"
+  - "permasalahan"
+
+# Continuation rows: tools are merged into the parent record
+continuation_merge_fields:
+  - "tools"
+  - "tools_n"
+
+# Stop scanning after this many consecutive empty rows
+empty_row_stop_threshold: 2000
+
+# ----- Normalization rules (configurable, not hardcoded) -----
+
+# Status normalization: raw value → canonical value
+status_mapping:
+  "selesai": "selesai"
+  "Selesai": "selesai"
+  "SELESAI": "selesai"
+  "belum selesai": "belum_selesai"
+  "Belum Selesai": "belum_selesai"
+  "belum Selesai": "belum_selesai"
+  "BELUM SELESAI": "belum_selesai"
+  "Selesai (Program)": "selesai_program"
+  "selesai (program)": "selesai_program"
+  "SELESAI (PROGRAM)": "selesai_program"
+
+# Jenis kerusakan normalization
+jenis_kerusakan_mapping:
+  "M - Mechanical": "mechanical"
+  "m - Mechanical": "mechanical"
+  "m - mechanical": "mechanical"
+  "E - Electrical": "electrical"
+  "e - Electrical": "electrical"
+  "e - electrical": "electrical"
+
+# Typo/synonym dictionary for text fields (permasalahan, penyebab, kegiatan)
+typo_corrections:
+  "errorr": "error"
+  "eror": "error"
+  "erro": "error"
+  "conv ": "conveyor "
+  "conv.": "conveyor"
+  "encorder": "encoder"
+  "paramater": "parameter"
+  "paramter": "parameter"
+  "breaker": "breaker"
+  "selonoid": "solenoid"
+  "selenoid": "solenoid"
+  "photocell": "photo cell"
+  "fhoto cell": "photo cell"
+  "poto cell": "photo cell"
+  "photosell": "photo cell"
+  "proxymity": "proximity"
+  "proxmity": "proximity"
+  "gearbok": "gearbox"
+  "gerbox": "gearbox"
+  "bearing": "bearing"
+  "bering": "bearing"
+  "troble": "trouble"
+  "truoble": "trouble"
+  "truobel": "trouble"
+
+# Machine name aliases: alternate names → canonical name
+machine_aliases:
+  "conveyor": "Conveyor"
+  "conv": "Conveyor"
+  "filling machine": "Filling Machine"
+  "filler": "Filling Machine"
+  "robot palletizer": "Robot Palletizer"
+  "palletizer": "Robot Palletizer"
+  "case packer": "Case Packer"
+  "case erector": "Case Erector"
+  "automatic weigher": "Automatic Weigher"
+  "auto weigher": "Automatic Weigher"
+  "check weigher": "Check Weigher"
+  "checkweigher": "Check Weigher"
+  "pallet dispenser": "Pallet Dispenser"
+  "metal detector": "Metal Detector"
+  "case sealer": "Case Sealer"
+  "flowbalancer": "Flowbalancer"
+  "moisture control": "Moisture Control"
+  "microdozer": "Microdozer"
+  "flowmatic": "Flowmatic"
+  "control system": "Control System"
+  "roll mill": "Roll Mill"
+
+# Low-info detection: if kegiatan_perbaikan matches any of these AND penyebab is empty,
+# the record is flagged as low_info=true
+low_info_patterns:
+  - "lanjut perbaikan"
+  - "lanjut perbaikan."
+  - "lanjutkan perbaikan"
+  - "-"
+  - ""
+
+# Date validation: records outside this range are flagged, not indexed
+valid_year_range:
+  min: 2020
+  max: 2027

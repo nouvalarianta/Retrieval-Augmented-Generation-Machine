@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Mencegah commit berkas sensitif atau data mentah perusahaan (PDF, XLSX, DB, NPY, .env) ke Git.
+
+set -e
+
+FORBIDDEN_PATTERN='\.(pdf|xlsx|xls|db|sqlite|sqlite3|npy|npz)$|(^|/)\.env$'
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null || true)
+
+if [ -z "$STAGED_FILES" ]; then
+    exit 0
+fi
+
+VIOLATIONS=$(echo "$STAGED_FILES" | grep -E -i "$FORBIDDEN_PATTERN" || true)
+
+if [ -n "$VIOLATIONS" ]; then
+    echo "=================================================================="
+    echo "[ERROR] Commit ditolak oleh pre-commit hook!"
+    echo "Berkas sensitif (dokumen perusahaan, model, indeks, .env) terdeteksi:"
+    echo "$VIOLATIONS"
+    echo "=================================================================="
+    echo "Batalkan staging berkas tersebut dengan: git reset HEAD <file>"
+    exit 1
+fi
+
+exit 0

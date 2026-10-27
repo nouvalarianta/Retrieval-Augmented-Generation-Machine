@@ -1,0 +1,41 @@
+# Company documents, indices, models, logs, golden set, and debug outputs
+data/
+models/
+index/*
+!index/.gitkeep
+logs/
+golden/
+debug/*
+!debug/.gitkeep
+
+# Sensitive environment variables
+.env
+.env.*
+!.env.example
+
+# Document and binary artifacts (strictly blocked from git)
+docs/*
+!docs/.gitkeep
+*.pdf
+*.xlsx
+*.xls
+*.db
+*.sqlite
+*.sqlite3
+*.npy
+*.npz
+
+# Python & OS artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+wheelhouse/

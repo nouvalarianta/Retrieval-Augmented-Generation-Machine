@@ -1,0 +1,33 @@
+profile_name: "meag_manual"
+description: "Profile for Bühler MEAG controller manuals (CHECK, BAG, DUMP, DIFF, FBAL)"
+
+page_layout:
+  top_margin_ratio: 0.10
+  bottom_margin_ratio: 0.10
+  repeating_line_threshold: 0.50
+
+section_patterns:
+  heading_regex: '^(\d+(?:\.\d+)*)\s+([A-Z][A-Za-z0-9\s/\-\(\)\.,_]+)$'
+  parameter_group_regex: 'Parameter group\s+([A-Z0-9_]+)|([A-Z0-9_]+)\s+[Mm]enu'
+
+code_patterns:
+  alarm: '\b([AW]\d{3}(?:\.\d+)?)\b'
+  seven_seg_error: '\b(E\s?[0-9A-Za-z])\b'
+  parameter: '\b([A-Z]{2,5}\.[A-Z0-9_\+\-]+(?:\.[x0-9])?)\b'
+  io_signal: '\b((?:DI|DO|AI|AO)[_\s]?\d+\.\d+)\b'
+  terminal: '\b(X\d{1,3}(?::\d{1,2})?)\b'
+  board: '\b(EBD\s?\d{4})\b'
+
+parameter_menus:
+  - "USER"
+  - "MAIN"
+  - "REC"
+  - "TCON"
+  - "SYS"
+  - "ADC"
+  - "HOST"
+  - "ENET"
+  - "TCP"
+  - "PBDP"
+  - "SERV"
+  - "PRN"
