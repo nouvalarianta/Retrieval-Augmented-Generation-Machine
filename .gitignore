@@ -13,7 +13,9 @@ docs/*
 *.sqlite
 *.sqlite3
 *.npy
-*.npz
+# Models and weights (blocked from git)
+models/
+*.gguf
 
 # Python & OS artifacts
 __pycache__/
