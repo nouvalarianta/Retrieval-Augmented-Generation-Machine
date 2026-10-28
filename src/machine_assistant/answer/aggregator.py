@@ -162,24 +162,26 @@ class MaintenanceAggregator:
                 lines.append(f"  - Terdapat {rework_count} pekerjaan dengan catatan rework/perbaikan ulang.")
 
         # Contoh record riwayat (maks 3 contoh)
+        sep = "- " * 34
         lines.append("")
-        lines.append("• **Contoh riwayat tercatat**:")
+        lines.append("• **Contoh Riwayat Tercatat** (maks. 3 entri):")
         for idx, r in enumerate(excel_results[:3], 1):
             meta = r.chunk.get("metadata", {})
-            row = meta.get("row_start", r.page)
+            row      = meta.get("row_start", r.page)
             date_str = _format_date(meta.get("date", ""))
-            masalah = meta.get("permasalahan", "-")
+            masalah  = meta.get("permasalahan", "-")
             penyebab = meta.get("penyebab", "-")
             tindakan = meta.get("kegiatan_perbaikan", "-")
-            status = meta.get("status", "-")
-            fl = meta.get("funcloc", "")
-            loc_str = f" | FuncLoc: {fl}" if fl else ""
+            status   = meta.get("status", "-")
+            fl       = meta.get("funcloc", "")
+            loc_str  = f"  |  FuncLoc: {fl}" if fl else ""
 
-            lines.append(
-                f"  [{idx}] Laporan Harian (Baris {row}, {date_str}{loc_str})\n"
-                f"      Masalah  : {masalah}\n"
-                f"      Penyebab : {penyebab}\n"
-                f"      Tindakan : {tindakan} (Status: {status})"
-            )
+            lines.append(f"")
+            lines.append(f"  [{idx}] Laporan Harian  —  {date_str}  (Baris {row}{loc_str})")
+            lines.append(f"  {sep}")
+            lines.append(f"      Masalah        : {masalah}")
+            lines.append(f"      Penyebab       : {penyebab}")
+            lines.append(f"      Tindakan       : {tindakan}")
+            lines.append(f"      Status         : {status.upper()}")
 
         return "\n".join(lines)
